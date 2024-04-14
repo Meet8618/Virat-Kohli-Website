@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(virat.webp);
+    background-size: cover;
+    margin: 80px;
+    height: 78vh;
+    display: flex;
+    justify-content: left; /* Place the container on the left side */
+}
+
+.container {
+    width: 300px;
+    margin-right: auto; /* Move the container to the left */
+    margin-left: 0;
+    margin-top: 100px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: #007bff;
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.back-to-login {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.back-to-login a {
+    color: #007bff;
+    text-decoration: none;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virat Kohli Merchandise Store</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        h2, h3 {
+            color: #333;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: auto; /* Center the button */
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .payment-methods {
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-method {
+            margin-right: 20px;
+        }
+
+        .payment-method input {
+            margin-right: 5px;
+        }
+
+        #cardDetailsSection, #upiDetailsSection {
+            display: none;
+        }
+
+    </style>
+    <script>
+        function calculateTotal() {
+    var viratTshirtPrice = 20.00;
+    var viratCapPrice = 10.00;
+    var viratBatPrice = 100.00;
+
+    var viratTshirtQuantity = parseInt(document.getElementById("viratTshirt").value) || 0;
+    var viratCapQuantity = parseInt(document.getElementById("viratCap").value) || 0;
+    var viratBatQuantity = parseInt(document.getElementById("viratBat").value) || 0;
+
+    // Ensure that the quantity is not negative
+    viratTshirtQuantity = Math.max(0, viratTshirtQuantity);
+    viratCapQuantity = Math.max(0, viratCapQuantity);
+    viratBatQuantity = Math.max(0, viratBatQuantity);
+
+    document.getElementById("viratTshirt").value = viratTshirtQuantity; // Update the input value
+    document.getElementById("viratCap").value = viratCapQuantity; // Update the input value
+    document.getElementById("viratBat").value = viratBatQuantity; // Update the input value
+
+    var totalAmount = (viratTshirtPrice * viratTshirtQuantity) + (viratCapPrice * viratCapQuantity) + (viratBatPrice * viratBatQuantity);
+
+    document.getElementById("totalAmount").innerHTML = "Total Amount: $" + totalAmount.toFixed(2);
+}
+
+        function togglePaymentDetails() {
+            var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+            var cardDetailsSection = document.getElementById("cardDetailsSection");
+            var upiDetailsSection = document.getElementById("upiDetailsSection");
+
+            // Show card details section only for card payments
+            if (paymentMethod === "Card") {
+                cardDetailsSection.style.display = "block";
+                upiDetailsSection.style.display = "none";
+            } else if (paymentMethod === "UPI") {
+                upiDetailsSection.style.display = "block";
+                cardDetailsSection.style.display = "none";
+            } else {
+                cardDetailsSection.style.display = "none";
+                upiDetailsSection.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Virat Kohli Merchandise Store</h1>
+    </header>
+
+    <div class="container">
+        <h2>Welcome To Virat Kohli Merchandise Store</h2>
+
+        <form method="post" action="process_order.php" onsubmit="calculateTotal()">
+            <label>Buyer's Name:</label>
+            <input type="text" name="buyerName" required/>
+            <br/><br/>
+            
+            <label>Street Address:</label>
+            <input type="text" name="streetAddress" required/>
+            <br/><br/>
+            
+            <label>City:</label>
+            <input type="text" name="city" required/>
+            <br/><br/>
+            
+            <label>Zip Code:</label>
+            <input type="number" name="zipCode" maxlength="5" required/>
+            <br/><br/>
+            
+            <label>State:</label>
+            <select name="state" required>
+                <option>Select State</option>
+                <option>Gujarat</option>
+                <option>Delhi</option>
+                <option>Maharashtra</option>
+                <option>Karnataka</option>
+                <option>Punjab</option>
+                <option>Uttar Pradesh</option>
+                <option>Tamil Nadu</option>
+                <option>West Bengal</option>
+            </select>
+            <br/><br/>
+
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <tr>
+                    <td>Virat Kohli Autographed T-shirt</td>
+                    <td>$20.00</td>
+                    <td><input type="number" name="viratTshirt" id="viratTshirt" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Virat Kohli Autographed Cap</td>
+                    <td>$10.00</td>
+                    <td><input type="number" name="viratCap" id="viratCap" onchange="calculateTotal()"></td>
+                </tr>
+                <tr>
+                    <td>Virat Kohli Autographed Bat</td>
+                    <td>$100.00</td>
+                    <td><input type="number" name="viratBat" id="viratBat" onchange="calculateTotal()"></td>
+                </tr>
+            </table>
+            <br/><br/>
+            
+            <h2 id="totalAmount">Total Amount: $0.00</h2>
+            
+            <h3>Payment Method</h3>
+
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <input type="radio" id="CashOnDelivery" name="paymentMethod" value="CashOnDelivery" onchange="togglePaymentDetails()" required>
+                    <label for="CashOnDelivery">Cash on Delivery</label>
+                </div>
+
+                <div class="payment-method">
+                    <input type="radio" id="Card" name="paymentMethod" value="Card" onchange="togglePaymentDetails()" required>
+                    <label for="Card">Card</label>
+                </div>
+
+                <div class="payment-method">
+                    <input type="radio" id="UPI" name="paymentMethod" value="UPI" onchange="togglePaymentDetails()" required>
+                    <label for="UPI">UPI</label>
+                </div>
+            </div>
+
+            <div id="cardDetailsSection" style="display: none;">
+                <h3>Card Details</h3>
+                <label>Card Number:</label>
+                <input type="text" name="cardNumber" maxlength="16" required>
+                <br/><br/>
+                
+                <label>Expiration Date (MM/YYYY):</label>
+                <input type="text" name="expirationDate" placeholder="MM/YYYY" maxlength="7" required>
+                <br/><br/>
+                
+                <label>CVV:</label>
+                <input type="text" name="cvv" maxlength="3" required>
+                <br/><br/>
+            </div>
+            
+            <div id="upiDetailsSection" style="display: none;">
+                <h3>UPI Details</h3>
+                <label>UPI ID:</label>
+                <input type="text" name="upiID" required>
+                <br/><br/>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
